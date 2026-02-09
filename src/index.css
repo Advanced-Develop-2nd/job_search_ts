@@ -37,3 +37,38 @@
   width: 100%;
   min-height: 100vh;
 }
+
+/* Markdownを表示する要素（proseクラス）内のスタイル微調整 */
+.prose h3 {
+  border-left: 4px solid #4f46e5; /* 案件名の横にインディゴの線を引く */
+  padding-left: 1rem;
+  margin-top: 2rem !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: 900 !important;
+}
+
+.prose p {
+  margin-bottom: 1rem !important;
+  line-height: 1.8 !important;
+}
+
+.prose hr {
+  margin: 3rem 0 !important;
+  border-color: #e2e8f0 !important;
+}
+
+.dark .prose hr {
+  border-color: #1e293b !important;
+}
+
+/* リスト（箇条書き）のスタイル調整 */
+.prose ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 強調テキストの色調整（ダークモード時） */
+.dark .prose strong {
+  color: #fff;
+}
