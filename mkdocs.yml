@@ -1,7 +1,7 @@
-site_name: <Application Name>
-site_description: <Application Description>
-repo_name: <Repository Name>
-repo_url: <Repository Link>
+site_name: ジョブサーチ UI/UX
+site_description: ジョブサーチのUI/UXに関するドキュメントサイト
+repo_name: job_search_ts
+repo_url: https://github.com/Advanced-Develop-2nd/job_search_ts#
 
 # テーマ設定
 theme:
@@ -58,4 +58,5 @@ extra_javascript:
 # ナビゲーションメニューの設定
 nav:
   - Home: index.md
+  - Setup: setup.md
 
