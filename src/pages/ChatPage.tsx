@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
 
 interface Skill {
   id: string;
@@ -8,7 +7,6 @@ interface Skill {
 }
 
 const ChatPage = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
   const [skills, setSkills] = useState<Skill[]>([{ id: crypto.randomUUID(), name: '', years: '' }]);
   const [careerVision, setCareerVision] = useState('');
   const [aiResponse, setAiResponse] = useState<string | null>(null);

@@ -1,14 +1,12 @@
-import React, { useState, UIEvent } from 'react';
+import React, { useState, type UIEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { useTheme } from '../context/ThemeContext';
 import termsText from '../assets/terms.md?raw';
 
 const AgreementPage: React.FC = () => {
   const [hasReadToBottom, setHasReadToBottom] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const navigate = useNavigate();
-  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleScroll = (e: UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;

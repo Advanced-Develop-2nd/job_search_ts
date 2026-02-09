@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* 全体のリセットとベース設定 */
 :root {
   background-color: #f8fafc;
   color: #1f2937;
   transition: background-color 0.3s ease;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .dark {
@@ -16,6 +18,15 @@
 .terms-surface-fixed {
   background-color: #ffffff !important;
   color: #1a1a1a !important;
+}
+
+/* App.cssの影響を完全に遮断するためのリセット */
+#root {
+  width: 100%;
+  max-width: 100% !important; /* App.cssのmax-widthを上書き */
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important; /* App.cssのcenterを左寄せに */
 }
 
 /* カスタムスクロールバー */
@@ -31,9 +42,4 @@
 }
 .dark ::-webkit-scrollbar-thumb {
   background: #334155;
-}
-
-#root {
-  width: 100%;
-  min-height: 100vh;
 }
