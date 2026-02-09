@@ -1,5 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, FC } from 'react';
 
 interface ThemeContextType {
   isDarkMode: boolean;
@@ -8,16 +7,23 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const isDarkMode = true;
+export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem('theme');
+    return saved === 'dark';
+  });
 
   useEffect(() => {
-    // 常にダークモードを適用
-    document.documentElement.classList.add('dark');
-  }, []);
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
 
-  // 空の関数を提供
-  const toggleTheme = () => {};
+  const toggleTheme = () => setIsDarkMode(prev => !prev);
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
