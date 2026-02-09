@@ -1,0 +1,61 @@
+site_name: <Application Name>
+site_description: <Application Description>
+repo_name: <Repository Name>
+repo_url: <Repository Link>
+
+# テーマ設定
+theme:
+  name: material
+  language: ja
+  features:
+    - navigation.tabs        # トップレベルのメニューをタブ表示
+    - navigation.sections    # セクションを展開表示
+    - navigation.top         # 「トップに戻る」ボタン
+    - search.highlight
+    - search.share
+    - content.code.copy
+  palette:
+    # ライトモード
+    - scheme: default
+      primary: indigo
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: ダークモードへ切り替え
+    # ダークモード
+    - scheme: slate
+      primary: indigo
+      accent: light blue
+      toggle:
+        icon: material/weather-night
+        name: ライトモードへ切り替え
+
+# 拡張機能
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+
+# 数式とMermaidのサポート
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# ナビゲーションメニューの設定
+nav:
+  - Home: index.md
+
