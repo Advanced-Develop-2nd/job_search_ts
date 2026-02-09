@@ -1,16 +1,22 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [ main ]  # main ブランチに push された時に実行
+    branches: [ main ]
+  # pull_request_target を使う場合の正しい記述
+  pull_request_target:
+    types: [opened, reopened, synchronize, edited]
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write   # リリース作成に必要
+  pages: write      # Pagesデプロイに必要
+  id-token: write   # Pagesデプロイに必要
+  pull-requests: write # PRへのラベル付け等に必要
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' # push時のみビルド＆デプロイを実行
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,3 +44,14 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # リリースドラフト機能を分離
+  update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6 # 最新のv6を推奨
+        env:
+          GITHUB_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
