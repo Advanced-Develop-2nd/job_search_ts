@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // ここを追加！ リポジトリ名が 「job_search_ts」 の場合：
-  base: '/job_search_ts/', 
+  base: '/advanaced-develop-2nd/job_search_ts/', 
 })
