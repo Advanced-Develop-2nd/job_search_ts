@@ -44,19 +44,39 @@ const ChatPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // 先ほど決めたAPIキーもここに含める運用になるかと思います
-          // 'X-API-KEY': import.meta.env.VITE_API_KEY 
+          // 必要に応じて APIキーを追加
+          // 'X-API-KEY': 'your-key'
         },
-        body: JSON.stringify(payload), // これで {"body": {...}} という形で送信されます
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) throw new Error(`分析に失敗しました (${response.status})`);
       
       const data = await response.json();
-      setAiResponse(data.result); // Markdown文字列をセット
-    } catch (error) {
+
+      // --- 修正箇所：配列の最初の要素から result を取り出す ---
+      if (Array.isArray(data) && data.length > 0 && data[0].result) {
+        setAiResponse(data[0].result);
+      } else if (data.result) {
+        // オブジェクトで返ってきた場合のフォールバック
+        setAiResponse(data.result);
+      } else {
+        throw new Error("解析結果が見つかりませんでした。");
+      }
+
+    } catch (error: unknown) { // any ではなく unknown に変更
       console.error(error);
-      setAiResponse("### 通信エラー\nサーバーとの通信に失敗しました。");
+      
+      // error が Message を持っているかチェックして取り出す
+      let errorMessage = "サーバーとの通信に失敗しました。";
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'string') {
+        errorMessage = error;
+      }
+
+      setAiResponse(`### エラー\n${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
