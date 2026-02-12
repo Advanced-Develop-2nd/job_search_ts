@@ -26,8 +26,8 @@ const ChatPage = () => {
     setIsLoading(true);
     setAiResponse(null);
 
-    // リクエスト仕様に基づいたデータ整形
-    const requestData = {
+    // バックエンドの期待する構造に合わせる
+    const payload = {
       body: {
         skills: skills
           .filter(s => s.name.trim() !== '')
@@ -43,26 +43,20 @@ const ChatPage = () => {
       const response = await fetch('https://app.azp-eng.com/webhook/jobsearch', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          // 先ほど決めたAPIキーもここに含める運用になるかと思います
+          // 'X-API-KEY': import.meta.env.VITE_API_KEY 
         },
-        body: JSON.stringify(requestData)
+        body: JSON.stringify(payload), // これで {"body": {...}} という形で送信されます
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      if (!response.ok) throw new Error(`分析に失敗しました (${response.status})`);
       
-      // Response仕様の "result" フィールド（Markdown）をセット
-      if (data && data.result) {
-        setAiResponse(data.result);
-      } else {
-        setAiResponse("解析結果のデータ構造が正しくありません。");
-      }
+      const data = await response.json();
+      setAiResponse(data.result); // Markdown文字列をセット
     } catch (error) {
-      console.error('API Error:', error);
-      setAiResponse("### 通信エラー\nAPIとの通信に失敗しました。接続設定やCORS設定を確認してください。");
+      console.error(error);
+      setAiResponse("### 通信エラー\nサーバーとの通信に失敗しました。");
     } finally {
       setIsLoading(false);
     }
