@@ -6,7 +6,8 @@ import ChatPage from './pages/ChatPage';
 export default function App() {
   return (
     <ThemeProvider>
-      <Router>
+      {/* basename を追加して GitHub Pages のサブディレクトリに対応させる */}
+      <Router basename="/job_search_ts/">
         <Routes>
           <Route path="/" element={<AgreementPage />} />
           <Route path="/chat" element={<ChatPage />} />

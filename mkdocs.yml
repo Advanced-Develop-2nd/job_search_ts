@@ -1,7 +1,7 @@
 site_name: ジョブサーチ UI/UX
 site_description: ジョブサーチのUI/UXに関するドキュメントサイト
 repo_name: job_search_ts
-repo_url: https://github.com/Advanced-Develop-2nd/job_search_ts#
+repo_url: https://github.com/Advanced-Develop-2nd/job_search_ts
 
 # テーマ設定
 theme:

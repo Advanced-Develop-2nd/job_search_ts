@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite' // 正しくはこちらです
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  // ここを追加！ リポジトリ名が 「job_search_ts」 の場合：
-  base: '/advanaced-develop-2nd/job_search_ts/', 
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+  // GitHub Pages のリポジトリ名に合わせて base を設定
+  base: '/job_search_ts/',
 })
