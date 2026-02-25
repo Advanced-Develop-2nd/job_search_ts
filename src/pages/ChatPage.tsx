@@ -86,7 +86,7 @@ const ChatPage = () => {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500">
       <header className="h-20 sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-8 flex items-center">
         <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl mr-4 shadow-lg">J</div>
-        <h1 className="text-xl font-black uppercase tracking-tight">Job Search AI</h1>
+        <h1 className="text-xl font-black uppercase tracking-tight">AZAPAENG プロネクAI</h1>
       </header>
 
       <main className="max-w-7xl mx-auto p-6 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -100,7 +100,7 @@ const ChatPage = () => {
               {skills.map((skill) => (
                 <div key={skill.id} className="flex gap-3">
                   <input
-                    placeholder="例: JavaScript"
+                    placeholder="例: JavaScript、MILS"
                     className="flex-1 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 ring-indigo-500/50"
                     value={skill.name}
                     onChange={(e) => updateSkill(skill.id, 'name', e.target.value)}
@@ -124,7 +124,7 @@ const ChatPage = () => {
               <span className="text-purple-600">02.</span> キャリアビジョン
             </h2>
             <textarea
-              placeholder="将来の希望や挑戦したいことを入力してください"
+              placeholder="将来の希望や挑戦したいことを入力してください /n 例："
               className="w-full h-40 p-5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none resize-none focus:ring-2 ring-purple-500/50"
               value={careerVision}
               onChange={(e) => setCareerVision(e.target.value)}
