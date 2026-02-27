@@ -8,7 +8,7 @@ interface Skill {
 }
 
 const ChatPage = () => {
-  const [skills, setSkills] = useState<Skill[]>([{ id: crypto.randomUUID(), name: '', years: '1' }]);
+  const [skills, setSkills] = useState<Skill[]>([{ id: crypto.randomUUID(), name: '', years: '0.5' }]);
   const [careerVision, setCareerVision] = useState('');
   const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +17,7 @@ const ChatPage = () => {
   const hasCareerVision = careerVision.trim() !== '';
   const bothEmpty = !hasAnySkill && !hasCareerVision;
 
-  const addSkill = () => setSkills([...skills, { id: crypto.randomUUID(), name: '', years: '1' }]);
+  const addSkill = () => setSkills([...skills, { id: crypto.randomUUID(), name: '', years: '0.5' }]);
   const removeSkill = (id: string) => {
     if (skills.length > 1) setSkills(skills.filter(s => s.id !== id));
   };
@@ -113,6 +113,8 @@ const ChatPage = () => {
                     type="number"
                     placeholder="年"
                     className="w-16 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center outline-none"
+                    min = "0"
+                    step = "0.5"
                     value={skill.years}
                     onChange={(e) => updateSkill(skill.id, 'years', e.target.value)}
                   />
