@@ -112,7 +112,7 @@ const ChatPage = () => {
                   <input
                     type="number"
                     placeholder="年"
-                    className="w-16 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center outline-none"
+                    className="w-18 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center outline-none"
                     min = "0"
                     step = "0.5"
                     value={skill.years}
