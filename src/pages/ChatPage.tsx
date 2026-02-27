@@ -8,7 +8,7 @@ interface Skill {
 }
 
 const ChatPage = () => {
-  const [skills, setSkills] = useState<Skill[]>([{ id: crypto.randomUUID(), name: '', years: '' }]);
+  const [skills, setSkills] = useState<Skill[]>([{ id: crypto.randomUUID(), name: '', years: '1' }]);
   const [careerVision, setCareerVision] = useState('');
   const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +17,7 @@ const ChatPage = () => {
   const hasCareerVision = careerVision.trim() !== '';
   const bothEmpty = !hasAnySkill && !hasCareerVision;
 
-  const addSkill = () => setSkills([...skills, { id: crypto.randomUUID(), name: '', years: '' }]);
+  const addSkill = () => setSkills([...skills, { id: crypto.randomUUID(), name: '', years: '1' }]);
   const removeSkill = (id: string) => {
     if (skills.length > 1) setSkills(skills.filter(s => s.id !== id));
   };
