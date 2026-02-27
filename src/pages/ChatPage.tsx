@@ -100,7 +100,7 @@ const ChatPage = () => {
               {skills.map((skill) => (
                 <div key={skill.id} className="flex gap-3">
                   <input
-                    placeholder="例: JavaScript、MILS"
+                    placeholder="例: JavaScript、MILS、AI"
                     className="flex-1 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 ring-indigo-500/50"
                     value={skill.name}
                     onChange={(e) => updateSkill(skill.id, 'name', e.target.value)}
@@ -124,7 +124,7 @@ const ChatPage = () => {
               <span className="text-purple-600">02.</span> キャリアビジョン
             </h2>
             <textarea
-              placeholder="将来の希望や挑戦したいことを入力してください /n 例："
+              placeholder="例：MATLAB/Simulinkを用いた車載システムの開発経験があるため、MILSの案件に関わりたいです。"
               className="w-full h-40 p-5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none resize-none focus:ring-2 ring-purple-500/50"
               value={careerVision}
               onChange={(e) => setCareerVision(e.target.value)}
