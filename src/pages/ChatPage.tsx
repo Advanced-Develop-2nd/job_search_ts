@@ -12,6 +12,10 @@ const ChatPage = () => {
   const [careerVision, setCareerVision] = useState('');
   const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  
+  const hasAnySkill = skills.some(s => s.name.trim() !== '');
+  const hasCareerVision = careerVision.trim() !== '';
+  const bothEmpty = !hasAnySkill && !hasCareerVision;
 
   const addSkill = () => setSkills([...skills, { id: crypto.randomUUID(), name: '', years: '' }]);
   const removeSkill = (id: string) => {
@@ -133,7 +137,7 @@ const ChatPage = () => {
 
           <button 
             onClick={handleAnalyze} 
-            disabled={isLoading}
+            disabled={isLoading || bothEmpty} 
             className="w-full py-5 bg-slate-900 dark:bg-indigo-600 text-white font-black rounded-2xl text-lg shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
           >
             {isLoading ? (
