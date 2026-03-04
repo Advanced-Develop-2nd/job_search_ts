@@ -90,7 +90,7 @@ const ChatPage = () => {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500">
       <header className="h-20 sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-8 flex items-center">
         <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl mr-4 shadow-lg">P</div>
-        <h1 className="text-xl font-black uppercase tracking-tight">AZAPAENG プロネクAI</h1>
+        <h1 className="text-xl font-black uppercase tracking-tight">AZAPAENG ProNexAI</h1>
       </header>
 
       <main className="max-w-7xl mx-auto p-6 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
