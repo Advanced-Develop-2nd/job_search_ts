@@ -8,12 +8,16 @@ interface Skill {
 }
 
 const ChatPage = () => {
-  const [skills, setSkills] = useState<Skill[]>([{ id: crypto.randomUUID(), name: '', years: '' }]);
+  const [skills, setSkills] = useState<Skill[]>([{ id: crypto.randomUUID(), name: '', years: '0.5' }]);
   const [careerVision, setCareerVision] = useState('');
   const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  
+  const hasAnySkill = skills.some(s => s.name.trim() !== '');
+  const hasCareerVision = careerVision.trim() !== '';
+  const bothEmpty = !hasAnySkill && !hasCareerVision;
 
-  const addSkill = () => setSkills([...skills, { id: crypto.randomUUID(), name: '', years: '' }]);
+  const addSkill = () => setSkills([...skills, { id: crypto.randomUUID(), name: '', years: '0.5' }]);
   const removeSkill = (id: string) => {
     if (skills.length > 1) setSkills(skills.filter(s => s.id !== id));
   };
@@ -85,8 +89,8 @@ const ChatPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500">
       <header className="h-20 sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-8 flex items-center">
-        <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl mr-4 shadow-lg">J</div>
-        <h1 className="text-xl font-black uppercase tracking-tight">Job Search AI</h1>
+        <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl mr-4 shadow-lg">P</div>
+        <h1 className="text-xl font-black uppercase tracking-tight">AZAPAENG ProNexAI</h1>
       </header>
 
       <main className="max-w-7xl mx-auto p-6 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -100,7 +104,7 @@ const ChatPage = () => {
               {skills.map((skill) => (
                 <div key={skill.id} className="flex gap-3">
                   <input
-                    placeholder="例: JavaScript"
+                    placeholder="例: JavaScript、MILS、AI"
                     className="flex-1 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 ring-indigo-500/50"
                     value={skill.name}
                     onChange={(e) => updateSkill(skill.id, 'name', e.target.value)}
@@ -108,7 +112,9 @@ const ChatPage = () => {
                   <input
                     type="number"
                     placeholder="年"
-                    className="w-16 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center outline-none"
+                    className="w-18 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center outline-none"
+                    min = "0"
+                    step = "0.5"
                     value={skill.years}
                     onChange={(e) => updateSkill(skill.id, 'years', e.target.value)}
                   />
@@ -124,7 +130,7 @@ const ChatPage = () => {
               <span className="text-purple-600">02.</span> キャリアビジョン
             </h2>
             <textarea
-              placeholder="将来の希望や挑戦したいことを入力してください"
+              placeholder="例：MATLAB/Simulinkを用いた車載システムの開発経験があるため、MILSの案件に関わりたいです。"
               className="w-full h-40 p-5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none resize-none focus:ring-2 ring-purple-500/50"
               value={careerVision}
               onChange={(e) => setCareerVision(e.target.value)}
@@ -133,7 +139,7 @@ const ChatPage = () => {
 
           <button 
             onClick={handleAnalyze} 
-            disabled={isLoading}
+            disabled={isLoading || bothEmpty} 
             className="w-full py-5 bg-slate-900 dark:bg-indigo-600 text-white font-black rounded-2xl text-lg shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
           >
             {isLoading ? (

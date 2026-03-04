@@ -16,28 +16,50 @@ const AgreementPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 md:p-12">
-      <div className="w-full max-w-4xl bg-white dark:bg-slate-900 shadow-2xl rounded-[3rem] overflow-hidden flex flex-col border border-slate-200 dark:border-slate-800">
-        
-        {/* Header */}
-        <div className="px-8 py-10 md:px-16 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
-          <div className="space-y-2 text-left">
-            <h1 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white">利用規約</h1>
-            <p className="text-slate-500 dark:text-slate-400 font-medium tracking-wide">内容をご確認の上、同意をお願いいたします</p>
-          </div>
-        </div>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      {/* ページヘッダ */}
 
-        {/* Markdown Content (白背景固定) */}
-        <div className="p-8 md:p-16 flex-1">
-          <div 
+      <main className="max-w-3xl mx-auto px-4 py-6 space-y-6">
+        {/* ▼ 説明カード（利用規約と同じ幅・独立） */}
+        <section
+          aria-label="ツール説明"
+          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow"
+        >
+          <div className="p-6">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">
+              本ツールについて
+            </h2>
+            <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+              あなたの保有スキルと目指したいキャリアプランをもとに、AIが弊社内で適性のある業務領域を探索し、候補としてご提示するツールです。
+            </p>
+          </div>
+        </section>
+
+        {/* ▼ 利用規約カード（既存スタイルを維持） */}
+        
+        <section
+          aria-label="利用規約"
+          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow"
+        >
+          <header className="p-6 border-b border-slate-200 dark:border-slate-800">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">利用規約</h2>
+            <p className="mt-2 text-slate-600 dark:text-slate-300">
+              内容をご確認の上、同意をお願いいたします。
+            </p>
+          </header>
+          {/* Markdown コンテンツ（白/ダーク背景固定） */}
+          <div
+            className="max-h-[60vh] overflow-auto rounded-2xl"
             onScroll={handleScroll}
-            className="h-[45vh] md:h-[520px] overflow-y-auto rounded-[2rem] border border-slate-200 terms-surface-fixed p-8 md:p-12 shadow-inner custom-scrollbar text-left"
+            role="region"
+            aria-label="利用規約本文（スクロール可能）"
           >
-            <article className="prose prose-slate prose-lg max-w-none prose-headings:text-black prose-p:text-slate-800">
+            <div className="prose prose-slate dark:prose-invert max-w-none p-6">
               <ReactMarkdown>{termsText}</ReactMarkdown>
-            </article>
-            <div className="mt-12 py-8 border-t border-slate-100 text-center">
-              <p className="text-indigo-600 font-extrabold tracking-widest text-sm italic">--- 規約の全文は以上です ---</p>
+              <hr className="my-6 border-slate-200 dark:border-slate-800" />
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                ――― 規約の全文は以上です ―――
+              </p>
             </div>
           </div>
 
@@ -63,13 +85,13 @@ const AgreementPage: React.FC = () => {
             <button
               onClick={() => navigate('/chat')}
               disabled={!isAgreed}
-              className="w-full py-6 bg-slate-900 dark:bg-indigo-600 hover:opacity-90 disabled:bg-slate-200 dark:disabled:bg-slate-800 text-white text-xl font-black rounded-2xl shadow-2xl transition-all active:scale-[0.99]"
+              className="mt-5 w-full py-6 bg-slate-900 dark:bg-indigo-600 hover:opacity-90 disabled:bg-slate-200 dark:disabled:bg-slate-800 text-white text-xl font-black rounded-2xl shadow-2xl transition-all active:scale-[0.99]"
             >
               次へ進む
             </button>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };
