@@ -17,6 +17,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' # push時のみビルド＆デプロイを実行
+
+    environment:
+      name: github-pages
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
